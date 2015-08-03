@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -16,10 +17,19 @@ namespace AutoGetClassInfo
         #endregion
 
         #region [  私有方法  ]
-        private void GetClassInfo()
+        /// <summary>
+        /// 根据传入的对象获取信息
+        /// </summary>
+        private void GetClassInfo(Student stuObj)
         {
-
-
+            Type t = stuObj.GetType();
+            PropertyInfo[] pInfo = t.GetProperties();
+            foreach (var item in pInfo)
+            {
+                string currentName = item.Name;
+                object obj = item.GetValue(stuObj, null);
+                //t2.GetProperty(currentName).SetValue(m,obj,null);
+            }
         }
         #endregion
 
@@ -31,7 +41,14 @@ namespace AutoGetClassInfo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Student stuObj = new Student()
+            {
+                Student_ID = 1,
+                Student_Name = "WD",
+                Student_Sex="N"
+            };
 
+            GetClassInfo(stuObj);
         }
         #endregion
     }
