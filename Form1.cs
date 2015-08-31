@@ -47,7 +47,7 @@ namespace AutoGetClassInfo
                 Student_Name = "WD",
                 Student_Sex="N"
             };
-
+            //ceshi 
             GetClassInfo(stuObj);
         }
         #endregion
