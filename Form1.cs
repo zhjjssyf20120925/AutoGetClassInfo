@@ -23,12 +23,15 @@ namespace AutoGetClassInfo
         private void GetClassInfo(Student stuObj)
         {
             Type t = stuObj.GetType();
+
+            Type t2 = stuObj.GetType();
+
             PropertyInfo[] pInfo = t.GetProperties();
             foreach (var item in pInfo)
             {
                 string currentName = item.Name;
                 object obj = item.GetValue(stuObj, null);
-                //t2.GetProperty(currentName).SetValue(m,obj,null);
+                t2.GetProperty(currentName).SetValue(2,obj,null);
             }
         }
         #endregion
